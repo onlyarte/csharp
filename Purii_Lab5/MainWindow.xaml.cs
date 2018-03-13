@@ -144,6 +144,7 @@ namespace Purii_Lab5
             }
 
             Canvas.Children.Clear();
+            Canvas.Children.Add(ellipse);
 
             Point prev = points[0];
             for(int i = 1; i < points.Count; i++)
@@ -171,8 +172,9 @@ namespace Purii_Lab5
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            Canvas.Children.Clear();
             points.Clear();
+            Canvas.Children.Clear();
+            Canvas.Children.Add(ellipse);
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -186,6 +188,18 @@ namespace Purii_Lab5
             {
                 Save();
             }
+        }
+
+        private void Canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Get the x and y coordinates of the mouse pointer.
+            System.Windows.Point position = e.GetPosition(this);
+            double pX = position.X;
+            double pY = position.Y;
+
+            // Sets the Height/Width of the circle to the mouse coordinates.
+            Canvas.SetLeft(ellipse, pX - 15);
+            Canvas.SetTop(ellipse, pY - 15);
         }
     }
 }

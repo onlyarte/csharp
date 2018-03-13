@@ -8,7 +8,27 @@
         Title="MainWindow" Height="350" Width="525"
         Closing="Window_Closing">
     <Grid>
-        <DockPanel>
+        <Canvas Name="Canvas" MouseDown="Canvas_MouseDown" MouseMove="Canvas_MouseMove" Background="White">
+            <Ellipse Name="ellipse" Fill="LightBlue" Width="30" Height="30">
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Canvas.MouseDown">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation
+                                    To="Tomato"
+                                    From="LightBlue"
+                                    Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" 
+                                    FillBehavior="Stop" 
+                                    Duration="0:0:0.3"
+                                    AutoReverse="True"
+                                 />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+        </Canvas>
+        <DockPanel VerticalAlignment="Top">
             <Menu>
                 <MenuItem Header="File">
                     <MenuItem Name="OpenButton" Header="Open" Click="OpenButton_Click"></MenuItem>
@@ -22,6 +42,5 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Canvas Name="Canvas" MouseDown="Canvas_MouseDown" Margin="0,20,0,0" Background="White" />
     </Grid>
 </Window>
